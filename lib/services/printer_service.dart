@@ -35,8 +35,9 @@ class PrinterService {
       await _printCenter('========================\n\n');
 
       // ---- BODY ----
-      await _printLeft('PLACA: ${dispatch.plate}\n');
+      await _printLeft('ORIGEN: Terminal del Norte\n');
       await _printLeft('DESTINO: ${dispatch.destination}\n');
+      await _printLeft('PLACA: ${dispatch.plate}\n');
       await _printLeft(
           'PRECIO ESTIMADO: \$${dispatch.estimatedPrice.toStringAsFixed(2)}\n');
       await _printLeft('FECHA: ${_formatDate(dispatch.dispatchDate)}\n');
@@ -47,16 +48,29 @@ class PrinterService {
 
       await _printCenter('Gracias por su preferencia\n');
       await _printCenter('Despacho registrado exitosamente\n\n');
+      
 
       // ---- QR ----
       await SunmiPrinter.printQRCode(
-        'DESPACHO|${dispatch.plate}|${dispatch.dispatchDate.millisecondsSinceEpoch}',
+        '6042659692',
         style: SunmiQrcodeStyle(align: SunmiPrintAlign.CENTER)
       );
 
       await SunmiPrinter.lineWrap(3);
       //await SunmiPrinter.cut(); 
       //await SunmiPrinter.endTransactionPrint();
+      await _printCenter(' \n\n');
+
+      await _printCenter(
+        'COOTRANSMEDE\n',
+        bold: true,
+        
+        
+      );
+       await _printCenter(' \n\n');
+      await _printCenter(' \n\n');
+      await SunmiPrinter.lineWrap(3);
+
     } catch (e) {
       throw Exception('❌ Error al imprimir despacho: $e');
     }

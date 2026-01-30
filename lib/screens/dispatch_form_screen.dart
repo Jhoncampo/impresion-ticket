@@ -137,50 +137,50 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Estado de la impresora
-            Container(
-              padding: const EdgeInsets.all(12),
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: BoxDecoration(
-                color: _printerConnected ? Colors.green[50] : Colors.red[50],
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: _printerConnected ? Colors.green : Colors.red,
-                  width: 1,
-                ),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    _printerConnected ? Icons.print : Icons.print_disabled,
-                    color: _printerConnected ? Colors.green : Colors.red,
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      _printerConnected
-                          ? 'Impresora SUNMI V2 conectada'
-                          : 'Impresora no disponible',
-                      style: TextStyle(
-                        color: _printerConnected ? Colors.green : Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  if (!_printerConnected)
-                    TextButton(
-                      onPressed: _checkPrinterConnection,
-                      child: const Text('Reintentar'),
-                    ),
-                ],
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.all(12),
+            //   margin: const EdgeInsets.only(bottom: 20),
+            //   decoration: BoxDecoration(
+            //     color: _printerConnected ? Colors.green[50] : Colors.red[50],
+            //     borderRadius: BorderRadius.circular(10),
+            //     border: Border.all(
+            //       color: _printerConnected ? Colors.green : Colors.red,
+            //       width: 1,
+            //     ),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       Icon(
+            //         _printerConnected ? Icons.print : Icons.print_disabled,
+            //         color: _printerConnected ? Colors.green : Colors.red,
+            //       ),
+            //       const SizedBox(width: 10),
+            //       Expanded(
+            //         child: Text(
+            //           _printerConnected
+            //               ? 'Impresora SUNMI V2 conectada'
+            //               : 'Impresora no disponible',
+            //           style: TextStyle(
+            //             color: _printerConnected ? Colors.green : Colors.red,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //       ),
+            //       if (!_printerConnected)
+            //         TextButton(
+            //           onPressed: _checkPrinterConnection,
+            //           child: const Text('Reintentar'),
+            //         ),
+            //     ],
+            //   ),
+            // ),
 
             // Título
             Text(
               'Nuevo Despacho',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue[800],
+                    color: Colors.green[700],
                   ),
               textAlign: TextAlign.center,
             ),
@@ -256,7 +256,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
             ElevatedButton(
               onPressed: _isLoading ? null : _submitDispatch,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue[800],
+                backgroundColor: Colors.green[700],
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -276,6 +276,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
             ),
@@ -286,7 +287,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
               onPressed: _testPrinter,
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                side: BorderSide(color: Colors.blue[800]!),
+                side: BorderSide(color: Colors.green[700]!),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -294,13 +295,13 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.print, color: Colors.blue),
+                  Icon(Icons.print, color: Colors.green),
                   SizedBox(width: 10),
                   Text(
                     'PROBAR IMPRESORA',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.blue,
+                      color: Colors.green,
                     ),
                   ),
                 ],
@@ -308,23 +309,23 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
             ),
 
             // Información adicional
-            const SizedBox(height: 30),
-            const Divider(),
-            const SizedBox(height: 10),
-            const Text(
-              'Instrucciones:',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('1. Complete todos los campos obligatorios'),
-                Text('2. Verifique que la impresora esté conectada'),
-                Text('3. Haga clic en "DESPACHAR E IMPRIMIR"'),
-                Text('4. El ticket se imprimirá automáticamente'),
-              ],
-            ),
+            // const SizedBox(height: 30),
+            // const Divider(),
+            // const SizedBox(height: 10),
+            // const Text(
+            //   'Instrucciones:',
+            //   style: TextStyle(fontWeight: FontWeight.bold),
+            // ),
+            // const SizedBox(height: 10),
+            // const Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     Text('1. Complete todos los campos obligatorios'),
+            //     Text('2. Verifique que la impresora esté conectada'),
+            //     Text('3. Haga clic en "DESPACHAR E IMPRIMIR"'),
+            //     Text('4. El ticket se imprimirá automáticamente'),
+            //   ],
+            // ),
           ],
         ),
       ),

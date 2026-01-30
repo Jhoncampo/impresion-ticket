@@ -27,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SUNMI Dispatch System'),
-        backgroundColor: Colors.blue[800],
+        title: const Text('Cootransmede'),
+        backgroundColor: Colors.green[700],
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[800],
+        selectedItemColor: Colors.green[700],
         onTap: _onItemTapped,
       ),
     );
