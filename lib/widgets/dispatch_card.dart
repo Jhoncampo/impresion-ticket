@@ -39,10 +39,15 @@ class DispatchCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
+            Text('Origen: ${dispatch.origin}'),
+            const SizedBox(height: 4),
             Text('Destino: ${dispatch.destination}'),
             const SizedBox(height: 4),
-            Text('Precio: \$${dispatch.estimatedPrice.toStringAsFixed(2)}'),
-            const SizedBox(height: 4),
+            if(dispatch.estimatedPrice != 0.00) ...[
+              Text('Precio: \$${dispatch.estimatedPrice?.toStringAsFixed(2)}'),
+              const SizedBox(height: 4),
+            ],
+            
             Text(
               'Fecha: ${_formatDate(dispatch.dispatchDate)}',
               style: const TextStyle(color: Colors.grey),

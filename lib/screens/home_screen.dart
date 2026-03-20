@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cootransmede'),
+        title: const Text('Despachos'),
         backgroundColor: Colors.green[700],
       ),
       body: _widgetOptions.elementAt(_selectedIndex),

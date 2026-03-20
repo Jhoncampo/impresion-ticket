@@ -29,8 +29,9 @@ class DatabaseHelper {
       CREATE TABLE dispatches(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         plate TEXT NOT NULL,
+        origin TEXT NOT NULL,
         destination TEXT NOT NULL,
-        estimatedPrice REAL NOT NULL,
+        estimatedPrice REAL NOT NULL DEFAULT 0,
         dispatchDate TEXT NOT NULL
       )
     ''');
@@ -43,7 +44,7 @@ class DatabaseHelper {
 
   Future<List<Dispatch>> getAllDispatches() async {
     Database db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('dispatches');
+    final List<Map<String, dynamic>> maps = await db.query('dispatches',orderBy: 'id desc');
     return List.generate(maps.length, (i) {
       return Dispatch.fromMap(maps[i]);
     });

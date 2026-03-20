@@ -20,27 +20,28 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
   final TextEditingController _priceController = TextEditingController();
 
   bool _isLoading = false;
-  bool _printerConnected = false;
+  // bool _printerConnected = false;
+  // bool _priceIsOptional = true;
 
   @override
   void initState() {
     super.initState();
-    _checkPrinterConnection();
+    //_checkPrinterConnection();
   }
 
-  Future<void> _checkPrinterConnection() async {
-    try {
-      await _printerService.initPrinter();
-      setState(() {
-        _printerConnected = true;
-      });
-    } catch (e) {
-      setState(() {
-        _printerConnected = false;
-      });
-      _showError('Impresora no disponible: $e');
-    }
-  }
+  // Future<void> _checkPrinterConnection() async {
+  //   try {
+  //     await _printerService.initPrinter();
+  //     setState(() {
+  //       _printerConnected = true;
+  //     });
+  //   } catch (e) {
+  //     setState(() {
+  //       _printerConnected = false;
+  //     });
+  //     _showError('Impresora no disponible: $e');
+  //   }
+  // }
 
   Future<void> _submitDispatch() async {
     if (!_formKey.currentState!.validate()) return;
@@ -50,10 +51,16 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
     });
 
     try {
+       // Obtener el precio (si está vacío, será 0)
+    double price = 0.0;
+    if (_priceController.text.isNotEmpty) {
+      final parsedPrice = double.tryParse(_priceController.text);
+      price = parsedPrice ?? 0.0;
+    }
       final dispatch = Dispatch(
         plate: _plateController.text.trim().toUpperCase(),
         destination: _destinationController.text.trim(),
-        estimatedPrice: double.parse(_priceController.text),
+        estimatedPrice: price,
         dispatchDate: DateTime.now(),
       );
 
@@ -64,7 +71,6 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
 
       _showSuccess();
       _clearForm();
-
     } catch (e) {
       _showError('Error al procesar el despacho: $e');
     } finally {
@@ -111,19 +117,13 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
 
   void _showSuccessMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.green,
-      ),
+      SnackBar(content: Text(message), backgroundColor: Colors.green),
     );
   }
 
   void _showErrorMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-      ),
+      SnackBar(content: Text(message), backgroundColor: Colors.red),
     );
   }
 
@@ -179,9 +179,9 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
             Text(
               'Nuevo Despacho',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green[700],
-                  ),
+                fontWeight: FontWeight.bold,
+                color: Colors.green[700],
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
@@ -232,13 +232,19 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
               decoration: const InputDecoration(
                 labelText: 'Precio Estimado (\$)',
                 hintText: 'Ej: 150.00',
+
                 prefixIcon: Icon(Icons.attach_money),
                 border: OutlineInputBorder(),
+                suffixIcon: Tooltip(
+                  message: 'Dejar vacío para registrar sin precio',
+                  child: Icon(Icons.info_outline, color: Colors.blue),
+                ),
               ),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Por favor ingrese el precio';
+                  return null;
+                  // return 'Por favor ingrese el precio';
                 }
                 final price = double.tryParse(value);
                 if (price == null) {
@@ -250,7 +256,8 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
                 return null;
               },
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 8),
+            
 
             // Botón de Despacho
             ElevatedButton(
@@ -276,7 +283,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white
+                        color: Colors.white,
                       ),
                     ),
             ),
@@ -299,10 +306,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
                   SizedBox(width: 10),
                   Text(
                     'PROBAR IMPRESORA',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.green,
-                    ),
+                    style: TextStyle(fontSize: 16, color: Colors.green),
                   ),
                 ],
               ),

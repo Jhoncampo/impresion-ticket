@@ -8,7 +8,7 @@ void main() async {
   
   // Inicializar base de datos
   final dbHelper = DatabaseHelper();
-  await dbHelper.database; // Esto crea la DB si no existe
+  await dbHelper.database; 
   
   runApp(
     MultiProvider(
