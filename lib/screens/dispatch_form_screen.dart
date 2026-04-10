@@ -213,7 +213,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
               controller: _destinationController,
               decoration: const InputDecoration(
                 labelText: 'Destino',
-                hintText: 'Ej: Ciudad, Dirección',
+                hintText: 'Ej: Dirección',
                 prefixIcon: Icon(Icons.location_on),
                 border: OutlineInputBorder(),
               ),
@@ -227,36 +227,36 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
             const SizedBox(height: 20),
 
             // Campo Precio Estimado
-            TextFormField(
-              controller: _priceController,
-              decoration: const InputDecoration(
-                labelText: 'Precio Estimado (\$)',
-                hintText: 'Ej: 150.00',
+            // TextFormField(
+            //   controller: _priceController,
+            //   decoration: const InputDecoration(
+            //     labelText: 'Precio Estimado (\$)',
+            //     hintText: 'Ej: 150.00',
 
-                prefixIcon: Icon(Icons.attach_money),
-                border: OutlineInputBorder(),
-                suffixIcon: Tooltip(
-                  message: 'Dejar vacío para registrar sin precio',
-                  child: Icon(Icons.info_outline, color: Colors.blue),
-                ),
-              ),
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return null;
-                  // return 'Por favor ingrese el precio';
-                }
-                final price = double.tryParse(value);
-                if (price == null) {
-                  return 'Ingrese un valor numérico válido';
-                }
-                if (price <= 0) {
-                  return 'El precio debe ser mayor a 0';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 8),
+            //     prefixIcon: Icon(Icons.attach_money),
+            //     border: OutlineInputBorder(),
+            //     suffixIcon: Tooltip(
+            //       message: 'Dejar vacío para registrar sin precio',
+            //       child: Icon(Icons.info_outline, color: Colors.blue),
+            //     ),
+            //   ),
+            //   keyboardType: TextInputType.numberWithOptions(decimal: true),
+            //   validator: (value) {
+            //     if (value == null || value.isEmpty) {
+            //       return null;
+            //       // return 'Por favor ingrese el precio';
+            //     }
+            //     final price = double.tryParse(value);
+            //     if (price == null) {
+            //       return 'Ingrese un valor numérico válido';
+            //     }
+            //     if (price <= 0) {
+            //       return 'El precio debe ser mayor a 0';
+            //     }
+            //     return null;
+            //   },
+            // ),
+            // const SizedBox(height: 8),
             
 
             // Botón de Despacho
@@ -279,7 +279,7 @@ class _DispatchFormScreenState extends State<DispatchFormScreen> {
                       ),
                     )
                   : const Text(
-                      'DESPACHAR E IMPRIMIR',
+                      'DESPACHAR',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

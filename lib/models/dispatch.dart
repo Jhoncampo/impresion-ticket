@@ -9,7 +9,7 @@ class Dispatch {
   Dispatch({
     this.id,
     required this.plate,
-    this.origin = "Test",
+    this.origin = "Jumbo la 65",
     required this.destination,
     this.estimatedPrice = 0.0,
     required this.dispatchDate,
